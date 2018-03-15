@@ -1,0 +1,38 @@
+﻿@using WebApplication9.Models
+    @model SearchResultsViewModel
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <title>title</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+    <div class="container" style="margin-top: 40px;">
+          
+
+        <h2>Products with stock between @Model.MinStock and @Model.MaxStock</h2>
+        <table class="table table-bordered table-striped" style="margin-top: 20px;">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Unit Price</th>
+                <th>Quantity In Stock</th>
+                <th>Quantity Per Unit</th>
+            </tr>
+            @foreach (Product product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.UnitPrice.ToString("C")</td>
+                    <td>@product.QuantityInStock</td>
+                    <td>@product.QuantityPerUnit</td>
+                </tr>
+            }
+        </table>
+    </div>
+        
+    </body>
+</html>
