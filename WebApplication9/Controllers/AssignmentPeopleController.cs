@@ -28,5 +28,33 @@ namespace WebApplication9.Controllers
             mgr.AddPerson(person);
             return Redirect("/assignmentpeople/showall");
         }
+
+        public ActionResult ShowEdit(int id)
+        {
+            PeopleManager mgr = new PeopleManager(Properties.Settings.Default.PeopleConStr);
+            Person person = mgr.GetPerson(id);
+            if (person == null)
+            {
+                return Redirect("/assignmentpeople/showall");
+            }
+
+            return View(person);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Person person)
+        {
+            PeopleManager mgr = new PeopleManager(Properties.Settings.Default.PeopleConStr);
+            mgr.Update(person);
+            return Redirect("/assignmentpeople/showall");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            PeopleManager mgr = new PeopleManager(Properties.Settings.Default.PeopleConStr);
+            mgr.Delete(id);
+            return Redirect("/assignmentpeople/showall");
+        }
     }
 }
